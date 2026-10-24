@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KALLPA | Ropa Urbana & Algodón Pima en Lima, Perú</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#121212',
+                            accent: '#E63946',
+                            gold: '#D4AF37',
+                            cream: '#F8F6F0',
+                            gray: '#71717A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .badge-pulse {
+            animation: pulse-dot 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.15); }
+        }
+    </style>
+</head>
+<body class="bg-[#FAFAFA] text-zinc-900 font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-black text-white text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 badge-pulse"></span>
+        <span>🔥 <strong>ENVÍO GRATIS</strong> en Lima Metropolitana por compras mayores a S/ 150</span>
+        <span class="hidden md:inline text-zinc-400">| Delivery Express en 24h con Yape y Plin</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Mobile menu button -->
+                <div class="flex items-center lg:hidden">
+                    <button id="menu-btn" class="p-2 text-zinc-700 hover:text-black focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <a href="#" class="flex items-center gap-2">
+                        <span class="text-2xl sm:text-3xl font-black tracking-tighter uppercase text-zinc-950">
+                            KALLPA<span class="text-brand-accent">.</span>PE
+                        </span>
+                        <span class="hidden sm:inline-block text-[10px] bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded-full font-semibold border border-zinc-200">
+                            LIMA
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-wide uppercase text-zinc-700">
+                    <a href="#inicio" class="hover:text-brand-accent transition">Inicio</a>
+                    <a href="#coleccion" class="hover:text-brand-accent transition">Colección 2026</a>
+                    <a href="#ofertas" class="text-brand-accent hover:opacity-80 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-tag"></i> Descuentos
+                    </a>
+                    <a href="#pima" class="hover:text-brand-accent transition">Algodón Pima</a>
+                    <a href="#nosotros" class="hover:text-brand-accent transition">Nosotros</a>
+                    <a href="#contacto" class="hover:text-brand-accent transition">Contacto</a>
+                </nav>
+
+                <!-- Actions / Cart / Search -->
+                <div class="flex items-center space-x-4">
+                    <button class="text-zinc-700 hover:text-black p-2 hidden sm:block">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                    <button class="text-zinc-700 hover:text-black p-2 hidden sm:block">
+                        <i class="fa-regular fa-heart text-lg"></i>
+                    </button>
+                    <!-- Cart trigger -->
+                    <button id="cart-toggle-btn" class="relative bg-zinc-900 hover:bg-black text-white px-4 py-2.5 rounded-full flex items-center gap-2 text-sm font-medium transition shadow-sm hover:shadow">
+                        <i class="fa-solid fa-bag-shopping text-sm"></i>
+                        <span class="hidden sm:inline">Bolsa</span>
+                        <span id="cart-counter" class="bg-brand-accent text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-zinc-200 bg-white px-6 py-5 space-y-4">
+            <a href="#inicio" class="block text-base font-semibold text-zinc-800 hover:text-brand-accent">Inicio</a>
+            <a href="#coleccion" class="block text-base font-semibold text-zinc-800 hover:text-brand-accent">Colección 2026</a>
+            <a href="#ofertas" class="block text-base font-semibold text-brand-accent">Ofertas & Promociones</a>
+            <a href="#pima" class="block text-base font-semibold text-zinc-800 hover:text-brand-accent">100% Algodón Pima</a>
+            <a href="#nosotros" class="block text-base font-semibold text-zinc-800 hover:text-brand-accent">Sobre Kallpa</a>
+            <a href="#contacto" class="block text-base font-semibold text-zinc-800 hover:text-brand-accent">Contacto</a>
+            <div class="pt-4 border-t border-zinc-100 flex items-center justify-between text-sm text-zinc-600">
+                <span><i class="fa-solid fa-location-dot text-brand-accent mr-1"></i> Miraflores, Lima</span>
+                <span class="font-semibold text-black">Yape / Plin disponible</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="relative overflow-hidden bg-zinc-950 text-white min-h-[580px] lg:min-h-[660px] flex items-center">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1920&auto=format&fit=crop" 
+                     alt="Moda urbana en Lima" 
+                     class="w-full h-full object-cover object-center opacity-40 filter saturate-150">
+                <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+                <div class="max-w-2xl space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs sm:text-sm font-medium tracking-wide">
+                        <span class="text-brand-accent font-bold">🇵🇪 HECHO EN LIMA</span>
+                        <span class="text-zinc-300">• Algodón Pima Peruano de Exportación</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.1] uppercase">
+                        Viste la esencia urbana del Perú.
+                    </h1>
+
+                    <p class="text-zinc-300 text-base sm:text-lg max-w-xl font-normal leading-relaxed">
+                        Cortes oversize, minimalismo contemporáneo y el tacto inigualable del mejor algodón del mundo. Diseñado y confeccionado en Lima para todo el país.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#coleccion" class="inline-flex justify-center items-center gap-2 bg-brand-accent hover:bg-red-600 text-white font-bold px-8 py-4 rounded-xl text-base transition duration-200 shadow-lg shadow-brand-accent/30">
+                            Explorar Colección <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#pima" class="inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base backdrop-blur-sm border border-white/20 transition">
+                            Conoce la calidad Pima
+                        </a>
+                    </div>
+
+                    <!-- Micro-social proof -->
+                    <div class="pt-6 flex items-center gap-4 text-xs sm:text-sm text-zinc-400">
+                        <div class="flex -space-x-2">
+                            <span class="w-8 h-8 rounded-full bg-zinc-800 border-2 border-black flex items-center justify-center text-[10px] font-bold text-white">4.9★</span>
+                        </div>
+                        <p><strong class="text-white">+5,000 pedidos</strong> entregados en Miraflores, San Isidro, Surco y todo el Perú.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Badges (Lima Logistics & Quality) -->
+        <section class="bg-white border-b border-zinc-200 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-3.5 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-red-50 text-brand-accent flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-900">Envíos Express 24h</h4>
+                            <p class="text-xs text-zinc-500 mt-0.5">En toda Lima Metropolitana y Olva Courier a provincias.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-3.5 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-900">100% Algodón Pima</h4>
+                            <p class="text-xs text-zinc-500 mt-0.5">Tejido prémium de fibra extralarga sin encogimiento.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-3.5 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-900">Paga con Yape y Plin</h4>
+                            <p class="text-xs text-zinc-500 mt-0.5">Pagos directos, tarjeta de crédito o contra entrega.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-3.5 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-900">Cambios sin problemas</h4>
+                            <p class="text-xs text-zinc-500 mt-0.5">Hasta 7 días para cambios de talla en Lima.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalog / Featured Products -->
+        <section id="coleccion" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-accent">Catálogo Destacado</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight mt-1">Prendas Esenciales de Temporada</h2>
+                    <p class="text-zinc-500 text-sm mt-2 max-w-xl">Prendas unisex con fit relajado, confeccionadas con costuras reforzadas para máxima durabilidad.</p>
+                </div>
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <button class="bg-black text-white px-4 py-2 rounded-lg">Todos</button>
+                    <button class="bg-zinc-100 hover:bg-zinc-200 text-zinc-700 px-4 py-2 rounded-lg transition">Polos Heavyweight</button>
+                    <button class="bg-zinc-100 hover:bg-zinc-200 text-zinc-700 px-4 py-2 rounded-lg transition">Hoodies & Poleras</button>
+                    <button class="bg-zinc-100 hover:bg-zinc-200 text-zinc-700 px-4 py-2 rounded-lg transition">Pantalones Cargo</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+                
+                <!-- Product 1 -->
+                <div class="group bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-zinc-100">
+                        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=700&auto=format&fit=crop" 
+                             alt="Polo Oversize Negro Algodón Pima" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-black text-white text-[11px] font-bold px-2.5 py-1 rounded-md tracking-wider uppercase">
+                            Bestseller
+                        </span>
+                        <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 text-zinc-700 hover:text-brand-accent flex items-center justify-center shadow-sm transition">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-zinc-400 font-medium">100% Algodón Pima 24/1</span>
+                            <h3 class="font-bold text-base text-zinc-900 mt-1 group-hover:text-brand-accent transition">
+                                Polo Oversize "Lima Noir"
+                            </h3>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-lg font-black text-zinc-900">S/ 79.90</span>
+                                <span class="text-xs text-zinc-400 line-through">S/ 99.00</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-zinc-100">
+                            <button onclick="addToCart('Polo Oversize Lima Noir', 79.90)" 
+                                    class="w-full bg-zinc-900 hover:bg-brand-accent text-white py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase transition duration-200 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Añadir a la bolsa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-zinc-100">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=700&auto=format&fit=crop" 
+                             alt="Hoodie Heavyweight Beige" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-brand-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md tracking-wider uppercase">
+                            -25% OFF
+                        </span>
+                        <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 text-zinc-700 hover:text-brand-accent flex items-center justify-center shadow-sm transition">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-zinc-400 font-medium">French Terry 400 GSM</span>
+                            <h3 class="font-bold text-base text-zinc-900 mt-1 group-hover:text-brand-accent transition">
+                                Hoodie Boxy Fit "Neblina"
+                            </h3>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-lg font-black text-zinc-900">S/ 149.90</span>
+                                <span class="text-xs text-zinc-400 line-through">S/ 199.00</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-zinc-100">
+                            <button onclick="addToCart('Hoodie Boxy Fit Neblina', 149.90)" 
+                                    class="w-full bg-zinc-900 hover:bg-brand-accent text-white py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase transition duration-200 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Añadir a la bolsa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-zinc-100">
+                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=700&auto=format&fit=crop" 
+                             alt="Polo Boxy Fit Blanco" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-zinc-900 text-white text-[11px] font-bold px-2.5 py-1 rounded-md tracking-wider uppercase">
+                            Nuevo
+                        </span>
+                        <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 text-zinc-700 hover:text-brand-accent flex items-center justify-center shadow-sm transition">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-zinc-400 font-medium">100% Algodón Pima 20/1</span>
+                            <h3 class="font-bold text-base text-zinc-900 mt-1 group-hover:text-brand-accent transition">
+                                Polo Classic White "Barranco"
+                            </h3>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-lg font-black text-zinc-900">S/ 84.90</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-zinc-100">
+                            <button onclick="addToCart('Polo Classic White Barranco', 84.90)" 
+                                    class="w-full bg-zinc-900 hover:bg-brand-accent text-white py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase transition duration-200 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Añadir a la bolsa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="group bg-white rounded-2xl overflow-hidden border border-zinc-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-zinc-100">
+                        <img src="https://images.unsplash.com/photo-1517445312882-bc9910d016b7?q=80&w=700&auto=format&fit=crop" 
+                             alt="Pantalón Cargo Unisex Streetwear" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md tracking-wider uppercase">
+                            Tendencia
+                        </span>
+                        <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 text-zinc-700 hover:text-brand-accent flex items-center justify-center shadow-sm transition">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-zinc-400 font-medium">Dril Pesado Reactivo</span>
+                            <h3 class="font-bold text-base text-zinc-900 mt-1 group-hover:text-brand-accent transition">
+                                Pantalón Cargo Wide-Leg
+                            </h3>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-lg font-black text-zinc-900">S/ 139.90</span>
+                                <span class="text-xs text-zinc-400 line-through">S/ 169.00</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-zinc-100">
+                            <button onclick="addToCart('Pantalón Cargo Wide-Leg', 139.90)" 
+                                    class="w-full bg-zinc-900 hover:bg-brand-accent text-white py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase transition duration-200 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-plus"></i> Añadir a la bolsa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Algodón Pima Section (Peruvian Pride & Value Proposition) -->
+        <section id="pima" class="bg-zinc-100 py-20 border-y border-zinc-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1000&auto=format&fit=crop" 
+                                 alt="Textiles peruanos de alta calidad" 
+                                 class="w-full h-auto object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 z-20 bg-black text-white p-6 rounded-2xl shadow-xl hidden sm:block max-w-xs border border-zinc-800">
+                            <p class="text-xs text-zinc-400 uppercase font-semibold">Tacto de Seda</p>
+                            <p class="text-sm font-bold mt-1">La fibra más suave, resistente y fresca para el clima cambiante de Lima.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-zinc-200 px-3 py-1 rounded-full text-xs font-bold text-zinc-700 uppercase">
+                            <i class="fa-solid fa-award text-brand-gold"></i> Orgullo Textil Peruano
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight leading-tight">
+                            ¿Por qué nuestras prendas duran años sin perder su color?
+                        </h2>
+                        <p class="text-zinc-600 leading-relaxed text-sm sm:text-base">
+                            El <strong>Algodón Pima Peruano</strong> tiene una longitud de hebra extraordinaria, lo que permite hilar un tejido que no produce "motas" (anti-pilling), conserva el teñido reactivo lavado tras lavado y se siente fresco en los veranos húmedos de la costa limeña.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-white p-4 rounded-xl border border-zinc-200">
+                                <span class="text-brand-accent font-bold text-lg">0%</span>
+                                <h4 class="font-bold text-sm text-zinc-800 mt-1">Encogimiento</h4>
+                                <p class="text-xs text-zinc-500 mt-0.5">Prendas prelavadas en talleres de Lima.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-zinc-200">
+                                <span class="text-brand-accent font-bold text-lg">2x</span>
+                                <h4 class="font-bold text-sm text-zinc-800 mt-1">Más Durabilidad</h4>
+                                <p class="text-xs text-zinc-500 mt-0.5">Costuras reforzadas con puntada de seguridad.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <a href="https://wa.me/51999999999?text=Hola%20Kallpa,%20quiero%20conocer%20m%C3%A1s%20sobre%20sus%20tallas%20y%20telas" target="_blank" class="inline-flex items-center gap-2 text-zinc-900 font-bold hover:text-brand-accent transition text-sm">
+                                Consultar guía de tallas por WhatsApp <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios de Clientes en Lima -->
+        <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-accent">Opiniones Reales</span>
+                <h2 class="text-3xl font-extrabold text-zinc-900 mt-1">Lo que dicen en Lima de nosotros</h2>
+                <p class="text-zinc-500 text-sm mt-2">Más de 5,000 clientes satisfechos en distritos de toda la capital y provincias.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-700 text-sm italic">"Compré dos polos oversize y la tela es espectacular, nada de motitas después de lavarlos. Me llegó el mismo día a San Miguel por Yape."</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-zinc-100 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-zinc-200 flex items-center justify-center font-bold text-zinc-700 text-sm">
+                            MC
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-900">Mateo Cárdenas</h4>
+                            <p class="text-xs text-zinc-400">San Miguel, Lima • Compra verificada</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-700 text-sm italic">"El hoodie beige es pesadito y abriga increíble para las noches húmedas de Lima. La atención por WhatsApp fue muy amable y rápida."</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-zinc-100 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-zinc-200 flex items-center justify-center font-bold text-zinc-700 text-sm">
+                            VR
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-900">Valeria Rivas</h4>
+                            <p class="text-xs text-zinc-400">Miraflores, Lima • Compra verificada</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-zinc-700 text-sm italic">"El corte boxy fit queda perfecto. Hice el pedido un martes por la mañana y el miércoles al mediodía ya lo tenía en Los Olivos."</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-zinc-100 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-zinc-200 flex items-center justify-center font-bold text-zinc-700 text-sm">
+                            JT
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-zinc-900">Joaquín Torres</h4>
+                            <p class="text-xs text-zinc-400">Los Olivos, Lima • Compra verificada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter & Promo Banner -->
+        <section id="ofertas" class="bg-black text-white py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <span class="inline-block text-xs font-bold bg-brand-accent px-3 py-1 rounded-full uppercase tracking-wider">
+                    Cupón Exclusivo
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Obtén 10% OFF en tu primera compra
+                </h2>
+                <p class="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto">
+                    Usa el cupón <span class="text-white font-mono bg-zinc-800 px-2 py-0.5 rounded border border-zinc-700 font-bold">LIMA10</span> en el checkout o déjanos tu correo para recibir drops exclusivos y lanzamientos antes que nadie.
+                </p>
+                <form onsubmit="handleSubscribe(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+                    <input type="email" required placeholder="Tu correo electrónico..." class="flex-1 px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-brand-accent text-sm">
+                    <button type="submit" class="bg-white hover:bg-zinc-200 text-black font-bold px-6 py-3 rounded-xl text-sm transition">
+                        Suscribirme
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="nosotros" class="bg-zinc-900 text-zinc-400 text-sm pt-16 pb-12 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-zinc-800">
+                <!-- Col 1: Brand -->
+                <div class="lg:col-span-2 space-y-4">
+                    <span class="text-2xl font-black tracking-tighter uppercase text-white">
+                        KALLPA<span class="text-brand-accent">.</span>PE
+                    </span>
+                    <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+                        Marca peruana de moda urbana e independiente inspirada en el ritmo de Lima. Confección ética, materiales premium de origen nacional y diseño streetwear auténtico.
+                    </p>
+                    <div class="flex items-center space-x-4 text-white text-lg pt-2">
+                        <a href="#" class="w-9 h-9 rounded-full bg-zinc-800 hover:bg-brand-accent flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-zinc-800 hover:bg-brand-accent flex items-center justify-center transition"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-zinc-800 hover:bg-brand-accent flex items-center justify-center transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://wa.me/51999999999" target="_blank" class="w-9 h-9 rounded-full bg-emerald-600 hover:bg-emerald-500 flex items-center justify-center transition text-white"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Navegación</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="#coleccion" class="hover:text-white transition">Polos Heavyweight</a></li>
+                        <li><a href="#coleccion" class="hover:text-white transition">Hoodies & Poleras</a></li>
+                        <li><a href="#coleccion" class="hover:text-white transition">Pantalones & Shorts</a></li>
+                        <li><a href="#pima" class="hover:text-white transition">Guía de Algodón Pima</a></li>
+                        <li><a href="#ofertas" class="hover:text-white transition">Promociones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Customer Care -->
+                <div>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Atención al Cliente</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="#" class="hover:text-white transition">Preguntas Frecuentes</a></li>
+                        <li><a href="#" class="hover:text-white transition">Políticas de Envíos en Lima</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cambios y Devoluciones</a></li>
+                        <li><a href="#" class="hover:text-white transition">Guía de Tallas (Fit Oversize)</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-book text-amber-500"></i> Libro de Reclamaciones</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact & Location -->
+                <div id="contacto">
+                    <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Showroom & Despacho</h4>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        <i class="fa-solid fa-map-pin text-brand-accent mr-1.5"></i> Av. José Larco 1045, Miraflores, Lima - Perú
+                    </p>
+                    <p class="text-xs text-zinc-400 mt-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 mr-1.5"></i> +51 999 888 777
+                    </p>
+                    <p class="text-xs text-zinc-400 mt-1">
+                        <i class="fa-regular fa-envelope text-zinc-400 mr-1.5"></i> contacto@kallpa.pe
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-zinc-800">
+                        <p class="text-[11px] text-zinc-500 font-medium">Métodos de pago aceptados:</p>
+                        <div class="flex items-center gap-2 mt-2 text-zinc-300 text-sm">
+                            <span class="bg-zinc-800 px-2 py-0.5 rounded text-[11px] font-bold text-purple-400">Yape</span>
+                            <span class="bg-zinc-800 px-2 py-0.5 rounded text-[11px] font-bold text-cyan-400">Plin</span>
+                            <span class="bg-zinc-800 px-2 py-0.5 rounded text-[11px] font-bold text-blue-400">Visa</span>
+                            <span class="bg-zinc-800 px-2 py-0.5 rounded text-[11px] font-bold text-red-400">Mastercard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-4">
+                <p>&copy; 2026 KALLPA STREETWEAR S.A.C. Todos los derechos reservados. RUC: 20601234567.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-zinc-400 transition">Términos y Condiciones</a>
+                    <a href="#" class="hover:text-zinc-400 transition">Privacidad de Datos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/51999999999?text=Hola%20Kallpa!%20Deseo%20hacer%20un%20pedido%20o%20tengo%20una%20consulta." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition duration-300">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Cart Slide-Over Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+                <!-- Header -->
+                <div class="p-6 border-b border-zinc-200 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-xl text-zinc-900"></i>
+                        <h3 class="text-lg font-bold text-zinc-900">Tu Bolsa de Compras</h3>
+                    </div>
+                    <button onclick="toggleCart()" class="text-zinc-400 hover:text-black p-2">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Items Container -->
+                <div id="cart-items" class="p-6 overflow-y-auto flex-1 space-y-4">
+                    <!-- Dynamic Cart Items injected here -->
+                    <div id="empty-cart-msg" class="text-center py-12 text-zinc-400">
+                        <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-zinc-300"></i>
+                        <p class="font-medium text-sm">Tu bolsa de compras está vacía.</p>
+                        <p class="text-xs text-zinc-400 mt-1">Descubre nuestros polos y hoodies de algodón pima.</p>
+                    </div>
+                </div>
+
+                <!-- Footer / Checkout -->
+                <div class="p-6 border-t border-zinc-200 bg-zinc-50 space-y-4">
+                    <div class="flex justify-between items-center text-base font-bold text-zinc-900">
+                        <span>Total estimado:</span>
+                        <span id="cart-total" class="text-xl">S/ 0.00</span>
+                    </div>
+                    <p class="text-[11px] text-zinc-500">Envío calculado en Lima o provincias en el paso de pago.</p>
+                    <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-xl font-bold text-sm tracking-wide flex items-center justify-center gap-2 transition shadow-md">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Finalizar Pedido por WhatsApp
+                    </button>
+                    <button onclick="clearCart()" class="w-full text-zinc-500 hover:text-zinc-800 text-xs text-center font-medium">
+                        Vaciar bolsa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 left-6 z-50 bg-black text-white px-5 py-3.5 rounded-xl text-sm font-semibold shadow-2xl flex items-center gap-3 transform -translate-y-10 opacity-0 pointer-events-none transition duration-300">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-message">Producto añadido a tu bolsa</span>
+    </div>
+
+    <!-- Interactive Script -->
+    <script>
+        // State
+        let cart = [];
+
+        // Elements
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuBtn = document.getElementById('menu-btn');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartToggleBtn = document.getElementById('cart-toggle-btn');
+        const cartCounter = document.getElementById('cart-counter');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const emptyCartMsg = document.getElementById('empty-cart-msg');
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+
+        // Toggle Mobile Menu
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Toggle Cart Drawer
+        cartToggleBtn.addEventListener('click', toggleCart);
+        function toggleCart() {
+            cartDrawer.classList.toggle('hidden');
+        }
+
+        // Add to Cart Function
+        function addToCart(title, price) {
+            const existing = cart.find(item => item.title === title);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ title, price, quantity: 1 });
+            }
+            updateCartUI();
+            showToast(`¡"${title}" añadido a la bolsa!`);
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+            cartCounter.textContent = totalCount;
+
+            const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            cartTotal.textContent = `S/ ${totalAmount.toFixed(2)}`;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div id="empty-cart-msg" class="text-center py-12 text-zinc-400">
+                        <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-zinc-300"></i>
+                        <p class="font-medium text-sm">Tu bolsa de compras está vacía.</p>
+                        <p class="text-xs text-zinc-400 mt-1">Descubre nuestros polos y hoodies de algodón pima.</p>
+                    </div>
+                `;
+            } else {
+                cartItemsContainer.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center justify-between p-3.5 bg-zinc-50 rounded-xl border border-zinc-200">
+                        <div class="flex-1 pr-3">
+                            <h4 class="font-bold text-sm text-zinc-900">${item.title}</h4>
+                            <p class="text-xs text-zinc-500 mt-0.5">S/ ${item.price.toFixed(2)} c/u</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded bg-zinc-200 text-xs font-bold hover:bg-zinc-300">-</button>
+                                <span class="text-xs font-bold">${item.quantity}</span>
+                                <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded bg-zinc-200 text-xs font-bold hover:bg-zinc-300">+</button>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-black text-sm text-zinc-900">S/ ${(item.price * item.quantity).toFixed(2)}</span>
+                            <button onclick="removeFromCart(${index})" class="block text-xs text-red-500 hover:text-red-700 mt-2 font-medium">
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Change Quantity
+        function changeQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        // Remove item
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // Clear Cart
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        // Checkout via WhatsApp with custom Peru order format
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('Tu bolsa está vacía. Selecciona un producto para comprar.');
+                return;
+            }
+            let message = "Hola Kallpa! Quiero realizar el siguiente pedido desde la web:%0A%0A";
+            let total = 0;
+            cart.forEach(item => {
+                const sub = item.price * item.quantity;
+                total += sub;
+                message += `• ${item.quantity}x ${item.title} - S/ ${sub.toFixed(2)}%0A`;
+            });
+            message += `%0A*Total: S/ ${total.toFixed(2)}*%0A`;
+            message += "Zona de entrega: Lima Metropolitana (Yape/Plin)";
+
+            window.open(`https://wa.me/51999999999?text=${message}`, '_blank');
+        }
+
+        // Toast Helper
+        function showToast(text) {
+            toastMsg.textContent = text;
+            toast.classList.remove('opacity-0', '-translate-y-10', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', '-translate-y-10', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Newsletter simulation
+        function handleSubscribe(e) {
+            e.preventDefault();
+            showToast('¡Gracias por suscribirte! Código LIMA10 activado.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
